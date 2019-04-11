@@ -224,11 +224,11 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
 
         i = get_current_batch(net);
 
-        int calc_map_for_each = 4 * train_images_num / (net.batch * net.subdivisions);  // calculate mAP for each 4 Epochs
+        int calc_map_for_each = 1 * train_images_num / (net.batch * net.subdivisions);  // calculate mAP for each 1 Epoch
         calc_map_for_each = fmax(calc_map_for_each, 100);
         int next_map_calc = iter_map + calc_map_for_each;
-        next_map_calc = fmax(next_map_calc, net.burn_in);
-        next_map_calc = fmax(next_map_calc, 1000);
+        //next_map_calc = fmax(next_map_calc, net.burn_in); //Start mAP calculation at 200
+        next_map_calc = fmax(next_map_calc, 200); //Using 200 instead of 1000
         if (calc_map) {
             printf("\n (next mAP calculation at %d iterations) ", next_map_calc);
             if (mean_average_precision > 0) printf("\n Last accuracy mAP@0.5 = %2.2f %% ", mean_average_precision * 100);
