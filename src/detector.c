@@ -134,8 +134,8 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
     args.threads = 3 * ngpus;   // Amazon EC2 Tesla V100: p3.2xlarge (8 logical cores) - p3.16xlarge
     //args.threads = 12 * ngpus;    // Ryzen 7 2700X (16 logical cores)
     mat_cv* img = NULL;
-    float max_img_loss = 35;
-    int number_of_lines = 350;
+    float max_img_loss = 40;
+    int number_of_lines = 400;
     int img_size = 2000;
     img = draw_train_chart(max_img_loss, net.max_batches, number_of_lines, img_size, dont_show);
 #endif    //OPENCV
