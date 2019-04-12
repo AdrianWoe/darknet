@@ -1305,7 +1305,32 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         detection *dets = get_network_boxes(&net, im.w, im.h, thresh, hier_thresh, 0, 1, &nboxes, letterbox);
         if (nms) do_nms_sort(dets, nboxes, l.classes, nms);
         draw_detections_v3(im, dets, nboxes, thresh, names, alphabet, l.classes, ext_output);
-        save_image(im, "predictions");
+        
+        //Saves each predicition under a different name
+        char *input_copy;
+        input_copy = strdup(input);
+        char delimiter[] = "/";
+        char *token;
+        token = strtok (input_copy,delimiter);
+        char *lastToken ;
+        while (token != NULL) {
+          lastToken = token ;
+          token = strtok (NULL, delimiter);
+        }
+        printf("last token - %s\n",lastToken); 
+
+        printf("input_copy is: %s\n", input_copy);
+        printf("input is: %s\n", input);
+        //printf("name is: %s\n", lastToken);
+        find_replace_extension(lastToken, ".jpg", "", lastToken);
+        printf("last token - %s\n",lastToken);
+        //printf("name is: %s\n", ptr);
+
+        strcat(lastToken, "_prediction");
+        printf("last token - %s\n",lastToken);
+
+
+        save_image(im, lastToken);
         if (!dont_show) {
             show_image(im, "predictions");
         }
