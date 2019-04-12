@@ -1317,19 +1317,9 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
           lastToken = token ;
           token = strtok (NULL, delimiter);
         }
-        printf("last token - %s\n",lastToken); 
-
-        printf("input_copy is: %s\n", input_copy);
-        printf("input is: %s\n", input);
-        //printf("name is: %s\n", lastToken);
         find_replace_extension(lastToken, ".jpg", "", lastToken);
-        printf("last token - %s\n",lastToken);
-        //printf("name is: %s\n", ptr);
-
         strcat(lastToken, "_prediction");
-        printf("last token - %s\n",lastToken);
-
-
+        
         save_image(im, lastToken);
         if (!dont_show) {
             show_image(im, "predictions");
