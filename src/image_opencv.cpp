@@ -1032,7 +1032,7 @@ mat_cv* draw_train_chart(float max_img_loss, int max_batches, int number_of_line
 // ----------------------------------------
 
 void draw_train_loss(mat_cv* img_src, int img_size, float avg_loss, float max_img_loss, int current_batch, int max_batches,
-    float precision, int draw_precision, char *accuracy_name, int dont_show, int mjpeg_port)
+    float precision, int draw_precision, char *accuracy_name, int dont_show, int mjpeg_port, char* base_prefix)
 {
     cv::Mat &img = *(cv::Mat*)img_src;
     int img_offset = 50;
@@ -1081,7 +1081,7 @@ void draw_train_loss(mat_cv* img_src, int img_size, float avg_loss, float max_im
         k = cv::waitKey(20);
     }
     if (k == 's' || current_batch == (max_batches - 1) || current_batch % 100 == 0) {
-        save_mat_png(img, "chart.png");
+        save_mat_png(img, strcat(base, "_chart.png");
         cv::putText(img, "- Saved", cv::Point(260, img_size - 10), cv::FONT_HERSHEY_COMPLEX_SMALL, 0.7, CV_RGB(255, 0, 0), 1, CV_AA);
     }
     else
