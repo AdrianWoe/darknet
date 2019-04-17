@@ -1307,20 +1307,20 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         draw_detections_v3(im, dets, nboxes, thresh, names, alphabet, l.classes, ext_output);
         
         //Saves each predicition under a different name
-        char *input_copy;
-        input_copy = strdup(input);
-        char delimiter[] = "/";
-        char *token;
-        token = strtok (input_copy,delimiter);
-        char *lastToken ;
-        while (token != NULL) {
-          lastToken = token ;
-          token = strtok (NULL, delimiter);
-        }
-        find_replace_extension(lastToken, ".jpg", "", lastToken);
-        strcat(lastToken, "_prediction");
+        // char *input_copy;
+        // input_copy = strdup(input);
+        // char delimiter[] = "/";
+        // char *token;
+        // token = strtok (input_copy,delimiter);
+        // char *lastToken ;
+        // while (token != NULL) {
+        //   lastToken = token ;
+        //   token = strtok (NULL, delimiter);
+        // }
+        // find_replace_extension(lastToken, ".jpg", "", lastToken);
+        // strcat(lastToken, "_prediction");
         
-        save_image(im, lastToken);
+        save_image(im, "predictions");
         if (!dont_show) {
             show_image(im, "predictions");
         }
