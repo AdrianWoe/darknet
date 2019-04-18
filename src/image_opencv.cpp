@@ -1081,7 +1081,10 @@ void draw_train_loss(mat_cv* img_src, int img_size, float avg_loss, float max_im
         k = cv::waitKey(20);
     }
     if (k == 's' || current_batch == (max_batches - 1) || current_batch % 100 == 0) {
-        save_mat_png(img, strcat(base_prefix, "_chart.png"));
+        char prefix_copy[255] = "";
+        strcpy(prefix_copy, base_prefix);
+        strcat(prefix_copy, "_chart.png");
+        save_mat_png(img, prefix_copy);
         cv::putText(img, "- Saved", cv::Point(260, img_size - 10), cv::FONT_HERSHEY_COMPLEX_SMALL, 0.7, CV_RGB(255, 0, 0), 1, CV_AA);
     }
     else
