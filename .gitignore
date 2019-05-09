@@ -40,3 +40,6 @@ Thumbs.db
 lib/
 include/
 share/
+
+iter*/
+logs/
